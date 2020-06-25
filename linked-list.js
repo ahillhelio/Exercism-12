@@ -28,9 +28,11 @@ export class LinkedList {
       newNode.prev = this.tail; // not found in SLL
       this.tail = newNode;
     }
-    this.length++;
-    return this;
+      this.length++;
+      return this;
   }
+
+  
 
   pop() {
     if (this.length === 0) { 
@@ -83,14 +85,17 @@ export class LinkedList {
   }
 
 
-  delete(value) {
-    for (let node = this.next; node != this; node = node.next) {
-      if (node.value === value) {
+  delete(val) {
+    if (!this.head) 
+      return false; 
+    for (let node = this.head; node.next != null; node = node.next) {
+      if (node.value === val) {
+        console.log("Deletion Attempt")
         node.prev.next = node.next
         node.next.prev = node.prev
-        this.length -= 1
-        break
-      }
+        this.length--;
+        return this.length;
+      } 
     }
   }
 
