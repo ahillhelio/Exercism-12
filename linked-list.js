@@ -88,14 +88,26 @@ export class LinkedList {
   delete(val) {
     if (!this.head) 
       return false; 
-    for (let node = this.head; node.next != null; node = node.next) {
-      if (node.value === val) {
-        console.log("Deletion Attempt")
-        node.prev.next = node.next
-        node.next.prev = node.prev
+    if (this.head.next==null && this.head.value==val){
         this.length--;
-        return this.length;
+        this.head=null;
+      } else { 
+      for (let node = this.head; node != null; node = node.next) {
+        if (node.value === val) {
+          
+          if (node.prev != null) 
+            node.prev.next = node.next
+
+          if (node.next != null) 
+            node.next.prev = node.prev
+
+          if (node.next = null)
+            this.head = node.prev
+
+          this.length--;
+          return this.length;
       } 
+    }
     }
   }
 
